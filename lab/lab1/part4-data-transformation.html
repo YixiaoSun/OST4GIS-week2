@@ -58,14 +58,8 @@
     Start code to filter data
 
     ===================== */
-    var dataFiltered=[];
-    for (var i=0;i<bikeArrayClean.length; i=i+1)
-    {if (bikeArrayClean[i][3]>20)
-      {
-        dataFiltered.push=[bikeArrayClean[i][0]; bikeArrayClean[i][1]]
-            }
-    };
-    console.log(dataFiltered);
+
+
     /* =====================
 
     End code to filter data
@@ -90,7 +84,14 @@
     Start code to add markers to map
 
     ===================== */
-
+    var dataFiltered=[];
+    for (var i=0;i<bikeArrayClean.length; i=i+1){
+      if (bikeArrayClean[i][3]>20)
+      {
+        dataFiltered.push (bikeArrayClean[i][0], bikeArrayClean[i][1]);
+        L.marker ([bikeArrayClean[i][1], bikeArrayClean[i][0]]).addTo(map);
+      }
+    }
 
 
     /* =====================

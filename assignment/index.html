@@ -35,8 +35,6 @@
 
       # Week 2 - Assignment
 
-      ## Introduction
-
        This week's assignment as having two separate parts:
 
        1. Log a series of arrays to the console that represents the health_centers dataset in array form. For example, [{'first': 1, 'second': 44}, {'first': 2, 'second': 12}] becomes [['first','second'],[1, 44],[2, 12]]
@@ -48,25 +46,64 @@
        Remember: functions are meant to facilitate code comprehension and reuse. Try to use them to organize your code.
       ===================== */
 
-
       /* =====================
 
       Start code
 
       ===================== */
 
-      var jsonToCsv = function(json) { console.log(json); };
+      var jsonToCsv = function(json) {
+        var csv=[];
+        for (var i=0; i<json.length; i++){
+          if(i==0){
+            csv.push(Object.keys(json[i]));
+          }
+          csv.push(Object.values(json[i]));
+        }
+        json=csv;
+        console.log(json);
+      };
 
+      /*var addMarkers = function(map) {
+        for (var j=0; j<healthCenters.length;j++){
+          L.marker ([healthCenters[j].LAT,healthCenters[j].LNG])
+              .bindPopup('Name: '+healthCenters[j].NAME)
+              .addTo(map);
+        }
+      };*/
 
-      var addMarkers = function(map) {};
+      var myIcon = L.icon({
+        iconUrl: 'images/marker-icon-2x.png',
+        iconSize: [20, 60],
+        iconAnchor: [22, 94],
+        popupAnchor: [-3, -76],
+        shadowUrl: 'images/marker-shadow.png',
+        shadowSize: [20, 40],
+        shadowAnchor: [22, 94]
+      });
+
+      var addMarkers = function(map) {
+        for (var j=0; j<healthCenters.length;j++){
+          if(healthCenters[j].DENTAL_PHONE!=='N/A'){
+            L.marker ([healthCenters[j].LAT,healthCenters[j].LNG],{icon: myIcon})
+                .bindPopup('Name: '+healthCenters[j].NAME)
+                .addTo(map);
+          }
+          else{
+            L.marker ([healthCenters[j].LAT,healthCenters[j].LNG])
+                .bindPopup('Name: '+healthCenters[j].NAME)
+                .addTo(map);
+          }
+
+        }
+      };
+
 
       /* =====================
 
       End code
 
       ===================== */
-
-
       jsonToCsv(healthCenters);
       addMarkers(map);
     </script>
