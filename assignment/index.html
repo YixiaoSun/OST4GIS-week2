@@ -54,6 +54,7 @@
 
       var jsonToCsv = function(json) {
         var csv=[];
+        
         for (var i=0; i<json.length; i++){
           if(i==0){
             csv.push(Object.keys(json[i]));
